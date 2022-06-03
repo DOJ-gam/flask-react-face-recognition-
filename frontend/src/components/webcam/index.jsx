@@ -19,7 +19,7 @@ const WebCam = () => {
     console.log(`ImageSrc = ${imageSrc}`);
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api", {
+      const response = await axios.post("http://127.0.0.1:3000/api", {
         data: imageSrc,
       });
       console.log(`Response = ${response}`);
