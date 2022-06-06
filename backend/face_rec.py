@@ -43,4 +43,5 @@ class FaceRec:
                     
                     return name;
                 
-doj = FaceRec("./known_people/DOJ.jpeg", './stranger', 'DOJ')
+# doj = FaceRec("./known_people/DOJ.jpeg", './stranger', 'DOJ')
+doj = FaceRec("./known_people/dad.jpg", './stranger', 'DOJ')

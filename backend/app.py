@@ -3,7 +3,7 @@ from flask import Flask, request;
 from flask_cors import CORS;
 import json
 from face_rec import FaceRec, doj;
-# from PIL import image
+from PIL import Image
 import base64
 import io
 import os
@@ -16,8 +16,33 @@ CORS(app)
 @app.route('/api', methods=['POST', 'GET'])
 def api():
     data = request.get_json()
-    print(data);
-    return data;
+    # print(data);
+    # return data;
+    resp = "Unknown"
+    print(data)
+    directory = "./stranger"
+    if(data):
+        if os.path.exists(directory):
+            shutil.rmtree(directory)
+            
+        if not os.path.exists(directory):
+            try:
+                os.mkdir(directory);
+                time.sleep(1)
+                result = data['data'];
+                b = bytes(result, 'utf-8');
+                image = b[b.find(b'/9'):]
+                im = image.open(io,io.BytesIO(base64.b64decode(image)))
+                im.save(directory+'/stranger.jpeg')
+                
+                if doj.recognize_face() == "DOJ":
+                    resp = "DOJ - Daddy Omar Jeng"
+                else:
+                    resp = "Unknown Person"
+            except:
+                pass
+            
+        return resp;
 
 
 
